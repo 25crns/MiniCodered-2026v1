@@ -15,7 +15,7 @@ stop at rage value
 */
 
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from '@/app/styles/Landing.module.css';
 import { redirect, RedirectType } from "next/navigation";
 

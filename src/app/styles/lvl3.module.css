@@ -6,29 +6,9 @@
   font-display: swap;
 } */
 
-:root {
-  --bg: #000000;          /* Deep Black */
-  --wavered: #ff0008;
-  --waveblue: #2200ff;
-  --white: #ffffff;      /* White highlights */
-  --glass: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-}
-
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
-
-html, body {
-  background: var(--bg);
-  overflow: hidden;
+.app-root {
   touch-action: manipulation;
   font-family: "ShareTechMono", sans-serif;
-}
-
-.app-root {
   position: relative;
   width: 100%;
   min-height: 100svh;

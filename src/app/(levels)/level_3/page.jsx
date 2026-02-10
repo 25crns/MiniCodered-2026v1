@@ -6,6 +6,7 @@ import { useEffect, useRef, useState} from "react";
 import { redirect, RedirectType } from "next/navigation";
 import SineWave from "./SineWave";
 import GalaxyCore from "../../../../public/assets/GalaxyCore.jpg";
+import styles from '@/app/styles/lvl3.module.css'
 
 const maxAmp = 60;
 const maxTries = 3;
@@ -154,31 +155,31 @@ export default function Page() {
   }
 
   return (
-    <div className="app-root" style={containerStyle}>
-      {glitch && <div className="glitch-overlay" aria-hidden="true" />}
-      <div className="hud">
-        <div className="hud-row hud-row--top">
-          <span className="hud-text">{hudText}</span>
-          <span className="hud-text">TEMPERATURE: 0K</span>
+    <div className={styles["app-root"]} style={containerStyle}>
+      {glitch && <div className={styles["glitch-overlay"]} aria-hidden="true" />}
+      <div className={styles.hud}>
+        <div className={`${styles["hud-row"]} ${styles["hud-row--top"]}`}>
+          <span className={styles["hud-text"]}>{hudText}</span>
+          <span className={styles["hud-text"]}>TEMPERATURE: 0K</span>
         </div>
-        <div className="hud-row hud-row--bottom">
-          <span className="hud-text">Coordinates: [ERROR_NOT_FOUND]</span>
-          <span className="hud-text">Data Link: [OVERRIDDEN]</span>
+        <div className={`${styles["hud-row"]} ${styles["hud-row--bottom"]}`}>
+          <span className={styles["hud-text"]}>Coordinates: [ERROR_NOT_FOUND]</span>
+          <span className={styles["hud-text"]}>Data Link: [OVERRIDDEN]</span>
         </div>
       </div>
       {popup.visible && (
         <>
-          <div className="scanlines-overlay" aria-hidden="true" />
-          <div className="popup-overlay">
+          <div className={styles["scanlines-overlay"]} aria-hidden="true" />
+          <div className={styles["popup-overlay"]}>
           <div
-            className={`popup-box ${
-              popup.success ? "popup-box--success" : "popup-box--failure"
+            className={`${styles["popup-box"]} ${
+              popup.success ? styles["popup-box--success"] : styles["popup-box--failure"]
             }`}
           >
-            <div className="popup-title">{popup.heading}</div>
-            <div className="popup-message">{popup.message}</div>
+            <div className={styles["popup-title"]}>{popup.heading}</div>
+            <div className={styles["popup-message"]}>{popup.message}</div>
             <button
-              className="popup-button"
+              className={styles["popup-button"]}
               onClick={() => {
                 if(synced) {
                   redirect('/level_0', RedirectType.replace);
@@ -195,29 +196,29 @@ export default function Page() {
         </>
       )}
       
-      <div className="wave-text">
+      <div className={styles["wave-text"]}>
         {status} {synced ? "" : `• Tries left: ${triesLeft}`}
       </div>
-      <div className="wave-stack">
-        <div className="wave-panel">
+      <div className={styles["wave-stack"]}>
+        <div className={styles["wave-panel"]}>
           <SineWave
             ref={targetRef}
             strokeColor="#2200ff"
             lineWidth={4}
             frequencyHz={synced ? 1 : targetFreq}
             decayRate={synced ? 0 : 0.95}
-            className="sine-wave sine-wave--pulse"
+            className={`${styles["sine-wave"]} ${styles["sine-wave--pulse"]}`}
             onTap={handlePlayerTap}
             maxAmplitude={maxAmp}
           />
         </div>
-        <div className="wave-panel">
+        <div className={styles["wave-panel"]}>
           <SineWave
             ref={playerRef}
             strokeColor={"#ff0008"}
             lineWidth={4}
             frequencyHz={synced ? 1 : playerFreq}
-            className="sine-wave sine-wave--glow"
+            className={`${styles["sine-wave"]} ${styles["sine-wave--glow"]}`}
             interactive={!synced}
             decayRate={synced ? 0 : 0}
             maxAmplitude={maxAmp}

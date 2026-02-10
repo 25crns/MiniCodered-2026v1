@@ -1,10 +1,3 @@
-#root {
-  margin: auto;
-}
-
-img {
-  z-index: -1;
-}
 
 h1.backstory-title {
   display: flex;

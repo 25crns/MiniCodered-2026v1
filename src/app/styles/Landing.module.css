@@ -27,10 +27,9 @@ body {
     background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
     background-size: 100% 4px;
     pointer-events: none;
-    z-index: 999;
 }
 
-#game-world {
+.game-world {
   width: 100%; height: 100%; position: relative;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
@@ -42,7 +41,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 0;
+    z-index: -1;
     opacity: 0.9; /* High visibility */
     /* Filters turn the Mars texture into a deep red monochrome */
     filter: sepia(100%) hue-rotate(-50deg) saturate(350%);
@@ -72,7 +71,6 @@ body {
 .hud-layer {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 5;
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -113,7 +111,6 @@ body {
 .center-content {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     display: flex; justify-content: center; align-items: center;
-    z-index: 10;
 }
 
 .warning-card {
@@ -145,15 +142,13 @@ body {
 }
 
 /* --- LOADING SCREEN (Centered) --- */
-#loading-container {
-    margin-left: auto;
+.loading-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     z-index: 50;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; /* PERFECT CENTERING */
+    display: flex; justify-content: center; align-items: center; /* PERFECT CENTERING */
     background: rgba(0,0,0,0.8);
 }
-#loading-text { font-size: 4rem; text-shadow: 0 0 20px var(--primary); }
+.loading-text { font-size: 4rem; text-shadow: 0 0 20px var(--primary); }
 
 /* --- ALARM STATE (Red Beam) --- */
 .alarm-state {
@@ -168,11 +163,11 @@ body {
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
 /* --- GIANT TIMER --- */
-#countdown-display {
+.countdown-display {
     position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
     font-size: 25vw; /* Scales massively */
     color: rgba(255, 0, 0, 0.4);
-    font-weight: 900; z-index: 20; pointer-events: none;
+    font-weight: 900; pointer-events: none;
     text-shadow: 0 0 20px red;
 }
 
@@ -182,7 +177,7 @@ body {
     border: 3px solid #fff; background: radial-gradient(circle, #ff3333, #990000);
     color: white; display: flex; justify-content: center; align-items: center;
     border-radius: 50%; font-weight: bold; font-size: 1.2rem;
-    box-shadow: 0 0 25px red; z-index: 100;
+    box-shadow: 0 0 25px red;
     animation: popIn 0.05s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 @keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }

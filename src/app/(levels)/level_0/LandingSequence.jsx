@@ -231,10 +231,10 @@ export default function LandingSequence() {
         </div>
 
         {gameState === 'loading' && (
-          <div id="loading-container">
+          <div id="loading-container" className={styles['loading-container']}>
             <div className={`${styles.card} ${styles['warning-card']}`} id="status-card">
               <span className={styles['section-label']}>SYSTEM INITIALIZATION</span>
-              <h1 id="loading-text">{currentDisplayValue.toFixed(2)}%</h1>
+              <h1 id="loading-text" className={styles['loading-text']}>{currentDisplayValue.toFixed(2)}%</h1>
               <p className={styles['blink-text']}> CALIBRATING THRUSTERS...</p>
             </div>
           </div>

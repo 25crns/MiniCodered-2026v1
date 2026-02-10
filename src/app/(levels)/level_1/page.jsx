@@ -5,7 +5,7 @@ import { generateSoln } from './actions';
 import { redirect, RedirectType } from "next/navigation";
 
 export default function Page(){
-  const runeCount = 2;
+  const runeCount = 10;
   const [runes, setRunes] = useState(Array.from({ length: runeCount }, (_, i) => false));
   const [litRunes, setLitRunes] = useState(0);
   const [solution, setSol] = useState([]);

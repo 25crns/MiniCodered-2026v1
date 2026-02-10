@@ -20,7 +20,7 @@ import styles from '@/app/styles/Landing.module.css';
 
 export default function LandingSequence() {
   const [rageValue] = useState((Math.random() * 100).toFixed(2));
-  const [gameState, setGameState] = useState('loading'); // intro, loading, alarm, verify
+  const [gameState, setGameState] = useState('intro'); // intro, loading, alarm, verify
   const [currentDisplayValue, setCurrentDisplayValue] = useState(0);
   const [alarmCount, setAlarmCount] = useState(0);
   const [countdownDisplay, setCountdownDisplay] = useState('0.0');

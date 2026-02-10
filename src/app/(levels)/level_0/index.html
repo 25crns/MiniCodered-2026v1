@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+		<title>Agent 3000: Orbit Entry</title>
+		<link rel="stylesheet" href="styles2.css" />
+	</head>
+	<body>
+		<div class="crt-overlay"></div>
+
+		<div id="game-world">
+			<div class="planet-background">
+				<div class="planet"></div>
+			</div>
+
+			<div class="hud-layer">
+				<div class="hud-top">
+					<span>ORBITAL TRAJECTORY: <span class="blink">LOCKED</span></span>
+					<span>T-MINUS 00:02:00</span>
+				</div>
+
+				<div class="hud-left">
+					<div class="hud-item">
+						<label>OXYGEN LEVELS</label>
+						<div class="bar-container">
+							<div class="bar-fill" style="width: 82%"></div>
+						</div>
+						<span class="value">82%</span>
+					</div>
+					<div class="hud-item">
+						<label>HULL INTEGRITY</label>
+						<span class="value critical-text">CRITICAL</span>
+					</div>
+				</div>
+
+				<div class="hud-right">
+					<div class="hud-item">
+						<label>GRAVITY</label>
+						<span class="value large">1.2G</span>
+					</div>
+				</div>
+
+				<div class="hud-bottom">
+					<span>COORDINATES: 42.91° N, 12.33° W</span>
+					<span>DATA LINK: <span class="online-dot">●</span> ONLINE</span>
+				</div>
+			</div>
+
+			<div class="center-content">
+				<div class="card warning-card" id="intro-card">
+					<div class="icon-warning">⚠️</div>
+					<h2>WARNING: APPROACHING<br />PLANETARY ORBIT</h2>
+					<p>
+						Atmospheric entry may result in structural failure.<br />Environmental
+						hazards detected.<br />Proceed with caution.
+					</p>
+
+					<button onclick="startLandingSequence()" class="action-btn">
+						✈ INITIATE LANDING SEQUENCE
+					</button>
+				</div>
+
+				<div id="verify-screen" style="display: none" class="card warning-card">
+					<span class="section-label">SECURITY LOCKOUT</span>
+					<h2>STABILIZATION COMPLETE</h2>
+					<p>
+						System rebooted. Enter the <b>thruster calibration percentage</b> to
+						unlock controls.
+					</p>
+
+					<input
+						type="number"
+						id="user-input"
+						step="0.01"
+						inputmode="decimal"
+						placeholder="00.00"
+						class="rage-input" />
+					<button onclick="checkRageValue()" class="rage-submit">
+						UNLOCK CONTROLS
+					</button>
+				</div>
+			</div>
+
+			<div id="loading-container" style="display: none">
+				<div class="card warning-card" id="status-card">
+					<span class="section-label">SYSTEM INITIALIZATION</span>
+					<h1 id="loading-text">0.00%</h1>
+					<p class="blink-text">> CALIBRATING THRUSTERS...</p>
+				</div>
+			</div>
+
+			<div id="alarm-overlay" style="display: none">
+				<div id="countdown-display">0.0</div>
+			</div>
+		</div>
+
+		<script src="js2.js"></script>
+	</body>
+</html>

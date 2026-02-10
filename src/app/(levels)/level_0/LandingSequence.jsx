@@ -17,6 +17,7 @@ stop at rage value
 
 import React, { useState, useEffect, useRef } from 'react';
 import styles from '@/app/styles/Landing.module.css';
+import { redirect, RedirectType } from "next/navigation";
 
 export default function LandingSequence() {
   const [rageValue] = useState((Math.random() * 100).toFixed(2));
@@ -134,8 +135,7 @@ export default function LandingSequence() {
 
   const checkRageValue = () => {
     if (parseFloat(userInput).toFixed(2) === rageValue) {
-      alert('ACCESS GRANTED. LEVEL 2 INITIATED.');
-      window.location.href = 'level2.html';
+      redirect('/level_1', RedirectType.replace)
     } else {
       alert(`ACCESS DENIED.\nRequired: ${rageValue}%`);
       window.location.reload();

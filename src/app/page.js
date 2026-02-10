@@ -1,6 +1,7 @@
 import Image from "next/image";
 // import styles from "./page.module.css";
 import './styles/scrambled.css'
+import './styles/lvl3.css'
 import { redirect, RedirectType } from "next/navigation";
 
 export default function Home() {

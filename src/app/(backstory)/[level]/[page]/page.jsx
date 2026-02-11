@@ -9,25 +9,25 @@ import { promises as fs } from 'fs';
 
 
 export async function generateStaticParams() {
-  const pageRoutes = await fs.readFile(process.cwd() + '/src/app/(backstory)/backstory_routes.json', 'utf8');
-	
-  try {
-    return JSON.parse(pageRoutes).backstoryPageRoutes.map(
-      (page) => ({
-        level: page.level,
-        page: page.page,
-      })
-    )
-  } catch (error) {
-    console.error('Error:', error);
-    return [];
+	const pageRoutes = await fs.readFile(process.cwd() + '/src/app/(backstory)/backstory_routes.json', 'utf8');
+
+	try {
+		return JSON.parse(pageRoutes).backstoryPageRoutes.map(
+			(page) => ({
+				level: page.level,
+				page: page.page,
+			})
+		)
+	} catch (error) {
+		console.error('Error:', error);
+		return [];
 	}
 }
 
 
-export default async function Backstory( { params, }){
+export default async function Backstory({ params, }) {
 	const { level, page } = await params;
-	
+
 	const backstoryData = JSON.parse(await fs.readFile(process.cwd() + `/src/app/(backstory)/content/${level}.json`, 'utf8'));
 	console.log(backstoryData.pages[page])
 	// const nextPageUrl = Object.keys(backstoryData.pages).indexOf[page]
@@ -46,9 +46,9 @@ export default async function Backstory( { params, }){
 			scrambledStrs[2] += characters.charAt(Math.floor(Math.random() * charactersLength));
 			scrambledStrs[3] += characters.charAt(Math.floor(Math.random() * charactersLength));
 		}
-	
+
 		return scrambledStrs;
-	} 
+	}
 
 	function getAnimatedWords(content) {
 		return content.split(/(?<=\s)/gm).map((word, ind) => {
@@ -78,45 +78,45 @@ export default async function Backstory( { params, }){
 	}
 
 	return (
-		<>
+		<main className="backstory-main">
 			<Image
-				src={  `/assets/images/${backstoryData.pages[page].backgroundImageName}` }
+				src={`/assets/images/${backstoryData.pages[page].backgroundImageName}`}
 				alt=""
 				fill
 				style={{ objectFit: "fill" }}
 				priority
 			/>
-			
+
 			<div className="backstory-text-scrambled-scrollbar-wrapper">
-				<div className="backstory-text-scrambled" style={{"color": backstoryData.pages[page].accentColor}}>
+				<div className="backstory-text-scrambled" style={{ "color": backstoryData.pages[page].accentColor }}>
 					<h1 className="backstory-title">{getAnimatedWords(title)}</h1>
-						{ 
-							backstoryData.pages[page].paragraphs.map((content) => {
-								return <div className="backstory-paragraph">{getAnimatedWords(content)}</div>
-							})
-						} 
+					{
+						backstoryData.pages[page].paragraphs.map((content) => {
+							return <div className="backstory-paragraph">{getAnimatedWords(content)}</div>
+						})
+					}
 				</div>
 			</div>
 
-			<div className="backstory-button-container" style={{"--accent-color": backstoryData.pages[page].accentColor}}>
-				{ 
-					(backstoryData.pages[page].prevUrl)? (
+			<div className="backstory-button-container" style={{ "--accent-color": backstoryData.pages[page].accentColor }}>
+				{
+					(backstoryData.pages[page].prevUrl) ? (
 						<Link href={backstoryData.pages[page].prevUrl}
 							className="prev-btn">
-								Prev
+							Prev
 						</Link>
 					) : <button disabled> Prev </button>
 				}
-				{ 
-					(backstoryData.pages[page].nextUrl)? (
+				{
+					(backstoryData.pages[page].nextUrl) ? (
 						<Link href={backstoryData.pages[page].nextUrl}
-								className="next-btn">
-								Next
+							className="next-btn">
+							Next
 						</Link>
 					) : <button className="next-btn" disabled> Next </button>
 				}
 			</div>
-		</>
+		</main>
 	);
-} 
+}
 

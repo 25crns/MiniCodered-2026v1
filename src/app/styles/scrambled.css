@@ -1,3 +1,12 @@
+.backstory-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
 
 h1.backstory-title {
   display: flex;
@@ -31,36 +40,45 @@ h1.backstory-title {
   scrollbar-color: currentColor transparent;
   background-color: rgba(0, 0, 0, 0.75);
   font-family: monospace;
-  
+
   .word-container {
-    display: flex;
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
     width: 0px;
-    animation: 
+    animation:
       reveal calc(var(--n)*var(--step-duration)) steps(var(--n)) forwards;
     animation-delay: calc(var(--delay)*var(--step-duration));
   }
-  
-  .word {  /* word text */
+
+  .word {
+    /* word text */
+    grid-area: 1 / 1 / 2 / 2;
     display: inline-block;
     width: 0px;
+    overflow: hidden;
     white-space: pre;
     color: currentColor;
-    animation: 
+    animation:
       reveal calc(var(--n)*var(--step-duration)) steps(var(--n)) forwards;
     animation-delay: calc(var(--delay)*var(--step-duration) + var(--n)*var(--step-duration));
   }
 
-  .scrambled {  /* scrambled word text */
+  .scrambled {
+    /* scrambled word text */
+    grid-area: 1 / 1 / 2 / 2;
     text-wrap: nowrap;
     display: inline-block;
     width: fit-content;
+    overflow: hidden;
     white-space: pre;
     color: rgba(128, 128, 128, 0.699);
-    animation: 
+    animation:
       reveal calc(var(--n)*var(--step-duration)) steps(var(--n)) reverse forwards;
     animation-delay: calc(var(--delay)*var(--step-duration) + var(--n)*var(--step-duration));
 
-    &::after { 
+    &::after {
       content: attr(data-scrm-1);
       animation: animate-scramble calc(var(--n)*var(--step-duration)) steps(var(--n)) var(--n);
     }
@@ -75,29 +93,35 @@ h1.backstory-title {
 }
 
 @keyframes removeScramble {
-  to {content: ""}
+  to {
+    content: ""
+  }
 }
 
 @keyframes animate-scramble {
   0% {
     content: attr(data-scrm-1);
   }
+
   25% {
     content: attr(data-scrm-2);
   }
+
   50% {
     content: attr(data-scrm-3);
   }
+
   75% {
     content: attr(data-scrm-4);
   }
-  
+
 }
 
 @keyframes reveal {
   0% {
     width: 0px;
   }
+
   100% {
     width: calc(var(--n)*1ch);
   }
@@ -105,6 +129,8 @@ h1.backstory-title {
 
 .backstory-button-container {
   display: flex;
+  position: relative;
+  z-index: 10;
   width: 65vw;
   margin-block: 0.5rem;
   padding: 0.125rem;
@@ -113,7 +139,8 @@ h1.backstory-title {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0.5rem;
 
-  a, button {
+  a,
+  button {
     border: none;
     border-radius: inherit;
     padding-block: 0;

@@ -43,7 +43,7 @@ h1.backstory-title {
   .word {  /* word text */
     display: inline-block;
     width: 0px;
-    overflow: hidden;
+    white-space: pre;
     color: currentColor;
     animation: 
       reveal calc(var(--n)*var(--step-duration)) steps(var(--n)) forwards;
@@ -54,7 +54,7 @@ h1.backstory-title {
     text-wrap: nowrap;
     display: inline-block;
     width: fit-content;
-    overflow: hidden;
+    white-space: pre;
     color: rgba(128, 128, 128, 0.699);
     animation: 
       reveal calc(var(--n)*var(--step-duration)) steps(var(--n)) reverse forwards;
@@ -120,6 +120,7 @@ h1.backstory-title {
     padding-inline: 0.5rem;
     font-weight: 400;
     background-color: var(--accent-color);
+    cursor: pointer;
 
     &:disabled {
       color: grey;

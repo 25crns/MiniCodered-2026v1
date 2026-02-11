@@ -42,27 +42,18 @@ h1.backstory-title {
   font-family: monospace;
 
   .word-container {
-    display: inline-grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    align-items: center;
+    display: inline-block;
     width: 0px;
+    overflow: hidden;
     animation:
       reveal calc(var(--n)*var(--step-duration)) steps(var(--n)) forwards;
     animation-delay: calc(var(--delay)*var(--step-duration));
   }
 
   .word {
-    /* word text */
-    grid-area: 1 / 1 / 2 / 2;
     display: inline-block;
-    width: 0px;
-    overflow: hidden;
     white-space: pre;
     color: currentColor;
-    animation:
-      reveal calc(var(--n)*var(--step-duration)) steps(var(--n)) forwards;
-    animation-delay: calc(var(--delay)*var(--step-duration) + var(--n)*var(--step-duration));
   }
 
   .word-space {
@@ -84,7 +75,7 @@ h1.backstory-title {
   }
 
   100% {
-    width: calc(var(--n)*1ch);
+    width: calc(var(--n) * 1ch + 0.1ch);
   }
 }
 

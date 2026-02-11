@@ -31,6 +31,7 @@ export default function Page() {
   const timerIntervalRef = useRef(null);
   const loadIntervalRef = useRef(null);
   const alarmCountRef = useRef(0);
+  const emergencyTriggeredRef = useRef(false);
   const totalAlarmsNeeded = 8;
 
   const startLandingSequence = () => {
@@ -73,13 +74,16 @@ export default function Page() {
 
 
   const triggerEmergency = () => {
-    if (gameState === 'alarm') return;
+    if (emergencyTriggeredRef.current) return;
+    emergencyTriggeredRef.current = true;
+
     setGameState('alarm');
     document.body.classList.add(styles['alarm-state']);
 
     let calcValue = parseFloat(rageValue) / 10;
     let timeLimit = (calcValue >= 0 && calcValue <= 5) ? 6 : 9;
 
+    if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
     startTimer(timeLimit);
     if (navigator.vibrate) navigator.vibrate([500, 200, 500]);
     alarmCountRef.current = 0;
@@ -92,15 +96,27 @@ export default function Page() {
     setCountdownDisplay(remainingTime.toFixed(1));
 
     timerIntervalRef.current = setInterval(() => {
-      remainingTime -= 0.1;
-      setCountdownDisplay(remainingTime.toFixed(1));
+      // Extra safety: if we're not in the alarm state anymore, kill the timer.
+      // This prevents late failures after stabilizeShip() is called.
+      setGameState(current => {
+        if (current !== 'alarm') {
+          clearInterval(timerIntervalRef.current);
+          timerIntervalRef.current = null;
+          return current;
+        }
 
-      if (remainingTime <= 0) {
-        clearInterval(timerIntervalRef.current);
-        setCountdownDisplay('0.0');
-        alert('HULL BREACH DETECTED. MISSION FAILED.');
-        window.location.reload();
-      }
+        remainingTime -= 0.1;
+        setCountdownDisplay(remainingTime.toFixed(1));
+
+        if (remainingTime <= 0) {
+          clearInterval(timerIntervalRef.current);
+          timerIntervalRef.current = null;
+          setCountdownDisplay('0.0');
+          alert('HULL BREACH DETECTED. MISSION FAILED.');
+          window.location.reload();
+        }
+        return current;
+      });
     }, 100);
   };
 
@@ -143,7 +159,10 @@ export default function Page() {
   };
 
   const stabilizeShip = () => {
-    clearInterval(timerIntervalRef.current);
+    if (timerIntervalRef.current) {
+      clearInterval(timerIntervalRef.current);
+      timerIntervalRef.current = null;
+    }
     document.body.classList.remove(styles['alarm-state']);
     setGameState('verify');
     setAlarmNodes([]);

@@ -1,0 +1,21 @@
+{
+  "pages": {
+    "backstory_1": {
+      "title": "Level 2 Page 1",
+      "paragraphs": [
+        "You are Agent 3000.",
+        "",
+        "One of the most capable field agents on record.",
+        "Observant. Methodical. Trusted under extreme conditions.",
+        "",
+        "When data goes missing or systems fall silent,",
+        "your assignments go where others cannot—",
+        "and where questions are no longer optional."
+    ],
+      "backgroundImageName": "landing-page-background.jpg",
+      "accentColor": "cyan",
+      "prevUrl": null,
+      "nextUrl": "/level_1"
+    }
+  }
+}

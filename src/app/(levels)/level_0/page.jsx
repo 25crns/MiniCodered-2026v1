@@ -30,7 +30,7 @@ export default function Page() {
 
   const timerIntervalRef = useRef(null);
   const loadIntervalRef = useRef(null);
-  const totalAlarmsNeeded = 15;
+  const totalAlarmsNeeded = 8;
 
   const startLandingSequence = () => {
     const planet = document.querySelector(`.${styles.planet}`);
@@ -80,7 +80,7 @@ export default function Page() {
 
     startTimer(timeLimit);
     if (navigator.vibrate) navigator.vibrate([500, 200, 500]);
-    spawnAllAlarmNodes();
+    spawnNextAlarmNode(0);
   };
 
   const startTimer = (seconds) => {
@@ -100,29 +100,28 @@ export default function Page() {
     }, 100);
   };
 
-  const spawnAllAlarmNodes = () => {
+  const spawnNextAlarmNode = (count) => {
+    if (count >= totalAlarmsNeeded) {
+      stabilizeShip();
+      return;
+    }
+
     const maxX = window.innerWidth - 100;
     const maxY = window.innerHeight - 100;
 
-    const nodes = [];
-    for (let i = 0; i < totalAlarmsNeeded; i++) {
-      const randomX = Math.max(20, Math.floor(Math.random() * maxX));
-      const randomY = Math.max(20, Math.floor(Math.random() * maxY));
-      nodes.push({ id: i, x: randomX, y: randomY });
-    }
-    setAlarmNodes(nodes);
+    const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+    const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+
+    setAlarmNodes([{ id: Date.now(), x: randomX, y: randomY, index: count }]);
   };
 
   const handleAlarmNodeClick = (nodeId) => {
-    setAlarmNodes(prev => {
-      const remaining = prev.filter(node => node.id !== nodeId);
-      if (remaining.length === 0) {
-        stabilizeShip();
-      }
-      return remaining;
-    });
-    setAlarmCount(prev => prev + 1);
+    const clickedNode = alarmNodes.find(n => n.id === nodeId);
+    const nextCount = (clickedNode ? clickedNode.index : alarmCount) + 1;
+
+    setAlarmCount(nextCount);
     if (navigator.vibrate) navigator.vibrate(50);
+    spawnNextAlarmNode(nextCount);
   };
 
   const stabilizeShip = () => {

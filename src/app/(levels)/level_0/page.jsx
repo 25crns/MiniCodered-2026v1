@@ -30,7 +30,7 @@ export default function Page() {
 
   const timerIntervalRef = useRef(null);
   const loadIntervalRef = useRef(null);
-  const totalAlarmsNeeded = 4;
+  const totalAlarmsNeeded = 9;
 
   const startLandingSequence = () => {
     const planet = document.querySelector(`.${styles.planet}`);
@@ -109,11 +109,14 @@ export default function Page() {
     const maxX = window.innerWidth - 100;
     const maxY = window.innerHeight - 100;
 
-    const randomX = Math.max(20, Math.floor(Math.random() * maxX));
-    const randomY = Math.max(20, Math.floor(Math.random() * maxY));
-
-    const nodeId = alarmCount;
-    setAlarmNodes(prev => [...prev, { id: nodeId, x: randomX, y: randomY }]);
+    const howMany = Math.random() < 0.5 ? 1 : 2;
+    const newNodes = [];
+    for (let i = 0; i < howMany; i++) {
+      const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+      const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+      newNodes.push({ id: Date.now() + i, x: randomX, y: randomY });
+    }
+    setAlarmNodes(prev => [...prev, ...newNodes]);
   };
 
   const handleAlarmNodeClick = (nodeId) => {

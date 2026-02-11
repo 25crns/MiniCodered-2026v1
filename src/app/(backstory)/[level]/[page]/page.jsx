@@ -68,7 +68,7 @@ export default async function Backstory({ params, }) {
 				src={`/assets/${backstoryData.pages[page].backgroundImageName}`}
 				alt=""
 				fill
-				style={{ objectFit: "fill" }}
+				style={{ objectFit: "fill", zIndex: -1 }}
 				priority
 			/>
 

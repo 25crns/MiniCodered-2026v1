@@ -40,6 +40,12 @@ export default async function Backstory({ params, }) {
 		return content.split(/(\s+)/).filter(Boolean).map((word, ind) => {
 			let delay = charCount;
 			charCount += word.length;
+
+			// Render whitespace as a simple visible space, not animated
+			if (/^\s+$/.test(word)) {
+				return <span key={ind} className="word-space">{" "}</span>;
+			}
+
 			return (
 				<div
 					key={ind}
@@ -59,7 +65,7 @@ export default async function Backstory({ params, }) {
 	return (
 		<main className="backstory-main">
 			<Image
-				src={`/assets/images/${backstoryData.pages[page].backgroundImageName}`}
+				src={`/assets/${backstoryData.pages[page].backgroundImageName}`}
 				alt=""
 				fill
 				style={{ objectFit: "fill" }}

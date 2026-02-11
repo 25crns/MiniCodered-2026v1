@@ -65,6 +65,11 @@ h1.backstory-title {
     animation-delay: calc(var(--delay)*var(--step-duration) + var(--n)*var(--step-duration));
   }
 
+  .word-space {
+    display: inline-block;
+    width: 1ch;
+  }
+
   .backstory-paragraph {
     display: flex;
     flex-wrap: wrap;

@@ -106,8 +106,8 @@ export default function Page() {
       return;
     }
 
-    const maxX = window.innerWidth - 100;
-    const maxY = window.innerHeight - 100;
+    const maxX = window.innerWidth - 120;
+    const maxY = window.innerHeight - 120;
 
     const randomX = Math.max(20, Math.floor(Math.random() * maxX));
     const randomY = Math.max(20, Math.floor(Math.random() * maxY));
@@ -148,7 +148,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div>
+    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', position: 'relative' }}>
       <div className={styles['crt-overlay']}></div>
 
       <div id="game-world">

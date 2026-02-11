@@ -1,0 +1,9 @@
+.title {
+  position: absolute;
+  bottom: 2rem;
+  font-size: 5rem;
+  width: 100vw;
+  text-align: center;
+  color: rgb(217, 43, 226);
+  text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+}

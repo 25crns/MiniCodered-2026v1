@@ -1,0 +1,26 @@
+{
+  "pages": {
+    "backstory_1": {
+      "title": "Level 1 Page 1",
+      "paragraphs": [
+        "The security systems fall silent.",
+        "No alarms. No warnings.",
+        "",
+        "The core awakens.",
+        "Something answers.",
+        "",
+        "Data begins to upload—",
+        "fragmented, unstable.",
+        "Most of it never arrives.",
+        "",
+        "The signal goes dark.",
+        "You opened the door...",
+        "Now deal with what comes through."
+    ],
+      "backgroundImageName": "landing-page-background.jpg",
+      "accentColor": "cyan",
+      "prevUrl": "/level_3",
+      "nextUrl": "/end_screen"
+    }
+  }
+}

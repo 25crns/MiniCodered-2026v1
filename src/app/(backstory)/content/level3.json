@@ -1,0 +1,41 @@
+{
+  "pages": {
+    "backstory_1": {
+      "title": "Level 3 Page 1",
+      "paragraphs": [
+        "Navigation restored.",
+        "",
+        "A subterranean energy source has been detected beneath the facility.",
+        "Power output exceeds known reactors.",
+        "",
+        "Energy patterns exhibit irregular structure.",
+        "Readings show organized behavior beyond natural models.",
+        "",
+        "Visual data is partially corrupted.",
+        "The signal is now directly below your position."
+      ],
+      "backgroundImageName": "landing-page-background.jpg",
+      "prevUrl": null,
+      "nextUrl": "/level3/backstory_2"
+    },
+    "backstory_2": {
+      "title": "Level 3 Page 2",
+      "paragraphs": [
+        "Automated controls fail..."
+      ],
+      "backgroundImageName": "landing-page-background.jpg",
+      "prevUrl": "/level3/backstory_1",
+      "nextUrl": "/level3/backstory_3"
+    },
+    "backstory_3": {
+      "title": "Level 3 Page 3",
+      "paragraphs": [
+        "Manual Override required..."
+      ],
+      "backgroundImageName": "landing-page-background.jpg",
+      "accentColor": "dodgerblue",
+      "prevUrl": "/level3/backstory_2",
+      "nextUrl": "/end_screen/backstory_1"
+    }
+  }
+}

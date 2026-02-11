@@ -1,0 +1,32 @@
+{
+  "backstoryPageRoutes": [
+    {
+      "level": "level1",
+      "page": "backstory_1"
+    },
+    {
+      "level": "level1",
+      "page": "backstory_2"
+    },
+    {
+      "level": "level2",
+      "page": "backstory_1"
+    },
+    {
+      "level": "level3",
+      "page": "backstory_1"
+    },
+    {
+      "level": "level3",
+      "page": "backstory_2"
+    },
+    {
+      "level": "level3",
+      "page": "backstory_3"
+    },
+    {
+      "level": "end_screen",
+      "page": "backstory_1"
+    }
+  ]
+}

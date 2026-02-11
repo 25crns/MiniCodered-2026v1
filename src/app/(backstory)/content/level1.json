@@ -1,0 +1,28 @@
+{
+  "pages": {
+    "backstory_1": {
+      "title": "Level 1 Page 1",
+      "paragraphs": [
+        "For decades, space operations have been conducted beyond public knowledge.",
+        "Hidden behind classified budgets and blacked-out reports.",
+        "",
+        "Officially, they explore distant worlds in the name of science and progress.",
+        "Charting stars. Mapping anomalies. Expanding the frontier."
+      ],
+      "backgroundImageName": "landing-page-background.jpg",
+      "prevUrl": null,
+      "nextUrl": "/level1/backstory_2"
+    },
+    "backstory_2": {
+      "title": "Level 1 Page 2",
+      "paragraphs": [
+        "However, some missions uncover signals, structures, and energies that defy known physics—",
+        " —things humanity was never meant to find."
+      ],
+      "backgroundImageName": "landing-page-background.jpg",
+      "accentColor": "dodgerblue",
+      "prevUrl": "/level1/backstory_1",
+      "nextUrl": "/level_0"
+    }
+  }
+}

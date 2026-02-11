@@ -1,0 +1,30 @@
+{
+  "level1": {
+    "pages": {
+      "backstory_1": {
+        "title": "Level 1 Page 1",
+        "paragraphs": [ 
+          "Gavin, prince of a divine bloodline, descends from the last of the gods. For 500 years since the demon's victory in the War of Gods, his predecessors- who bore the blood of the demigods- have attempted to attack demon strongholds before but died in vain. Each of his predecessors have died by the hand of the demon lord, Malakaroth and his trechearous ally, the dark sorcerer Malevoryx.. Every effort ended in death. Now, Gavin is next in line.",
+          " With an infant born to preserve the gods’ bloodline, he fights fearlessly, leading the Alfred Clan as their strongest warrior. You are Gavin, the last hope of the gods. The blood of gods runs through your veins. The war ends with you—victory or nothing. Lend your strength to shatter the demons' reign and lead your people to glory!"
+        ],
+        "backgroundImageName": "landing-page-background.jpg"
+      },
+      "backstory_2": {
+        "title": "Level 1 Page 2",
+        "paragraphs": [ 
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate libero efficitur nulla sodales faucibus. Suspendisse non tempus arcu. Vivamus vel mattis elit, molestie sagittis odio. Integer blandit malesuada aliquam. Nulla facilisi. Aliquam pretium consequat mollis. Nam euismod nulla nec hendrerit aliquam.",
+          "Pellentesque pulvinar massa non tellus fermentum, ac lacinia justo gravida. Etiam malesuada quis turpis in tincidunt. Donec ornare nec elit vitae interdum. Suspendisse purus odio, pharetra ac turpis eu, maximus egestas enim. Aliquam in posuere arcu. Morbi elementum tortor nec ipsum ornare, quis aliquet libero lobortis. Nulla et arcu blandit, semper ligula sit amet, dapibus justo. Integer vitae volutpat dolor. Ut nec orci nisi."
+        ],
+        "backgroundImageName": "landing-page-background.jpg"
+      }
+    },
+    "backstory_3": {
+      "title": "Level 1 Page 3",
+      "paragraphs": [ 
+        "Vestibulum tellus metus, mollis at quam porttitor, pulvinar luctus dolor. In ullamcorper lectus dui, molestie luctus urna tristique non. Curabitur volutpat tincidunt est, elementum euismod leo tempor ut. Nam facilisis sodales lacus, nec suscipit tortor venenatis sed. Sed feugiat enim eget risus rhoncus, eu eleifend mauris commodo",
+        "Integer gravida sem id vestibulum dapibus. Aliquam vulputate viverra lobortis. Duis ut enim non nulla tincidunt pharetra. Aliquam non tristique est, non congue erat. Curabitur vel magna euismod, laoreet augue id, feugiat purus."
+      ],
+      "backgroundImageName": "landing-page-background.jpg"
+    }
+  }
+}

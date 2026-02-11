@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 :root {
-    --bg: #050000;          /* Deep Black */
-    --primary: #ff3333;     /* HUD Red */
-    --dim: #551111;         /* Dim Red */
-    --accent: #ffffff;      /* White highlights */
-    --glass: rgba(20, 0, 0, 0.85); /* Semi-transparent background */
+    --bg: #050000;
+    /* Deep Black */
+    --primary: #ff3333;
+    /* HUD Red */
+    --dim: #551111;
+    /* Dim Red */
+    --accent: #ffffff;
+    /* White highlights */
+    --glass: rgba(20, 0, 0, 0.85);
+    /* Semi-transparent background */
 }
 
 body {
@@ -17,60 +22,84 @@ body {
     width: 100vw;
     overflow: hidden;
     user-select: none;
-    touch-action: none; /* Prevents scrolling/zooming */
+    touch-action: none;
+    /* Prevents scrolling/zooming */
 }
 
 /* --- CRT SCANLINES --- */
 .crt-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
     background-size: 100% 4px;
     pointer-events: none;
 }
 
 .game-world {
-  width: 100%; height: 100%; position: relative;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 /* --- BACKGROUND PLANET --- */
 .planet-background {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: -1;
-    opacity: 0.9; /* High visibility */
+    opacity: 0.9;
+    /* High visibility */
     /* Filters turn the Mars texture into a deep red monochrome */
     filter: sepia(100%) hue-rotate(-50deg) saturate(350%);
 }
 
 .planet {
-    width: 110vw; /* Massive size to fill mobile background */
+    width: 110vw;
+    /* Massive size to fill mobile background */
     height: 110vw;
-    max-width: 600px; max-height: 600px; /* Cap size on desktop */
+    max-width: 600px;
+    max-height: 600px;
+    /* Cap size on desktop */
     border-radius: 50%;
-    
+
     /* Realistic Texture */
     background-image: url('https://www.solarsystemscope.com/textures/download/2k_mars.jpg');
-    background-size: 200% 100%; 
-    
+    background-size: 200% 100%;
+
     /* Deep 3D Shadow */
-    box-shadow: inset -40px -40px 80px rgba(0,0,0,0.95);
-    
+    box-shadow: inset -40px -40px 80px rgba(0, 0, 0, 0.95);
+
     animation: spin 60s linear infinite;
-    transition: transform 3s ease-in; /* For the zoom effect */
+    transition: transform 3s ease-in;
+    /* For the zoom effect */
 }
 
-@keyframes spin { to { background-position: -200% center; } }
-.planet-zoom { transform: scale(25); }
+@keyframes spin {
+    to {
+        background-position: -200% center;
+    }
+}
+
+.planet-zoom {
+    transform: scale(25);
+}
 
 /* --- HUD LAYER --- */
 .hud-layer {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -79,7 +108,8 @@ body {
     transition: opacity 0.5s ease;
 }
 
-.hud-top, .hud-bottom {
+.hud-top,
+.hud-bottom {
     display: flex;
     justify-content: space-between;
     font-size: 0.7rem;
@@ -87,30 +117,80 @@ body {
     border-top: 1px solid var(--dim);
     padding-top: 5px;
 }
-.hud-bottom { border-top: none; border-bottom: 1px solid var(--dim); padding-bottom: 5px; }
 
-.hud-left, .hud-right {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    display: flex; flex-direction: column; gap: 20px;
-}
-.hud-left { left: 10px; text-align: left; }
-.hud-right { right: 10px; text-align: right; }
-
-/* Hide side HUDs on very small screens */
-@media (max-width: 380px) {
-    .hud-left, .hud-right { display: none; }
+.hud-bottom {
+    border-top: none;
+    border-bottom: 1px solid var(--dim);
+    padding-bottom: 5px;
 }
 
-.hud-item .value { font-size: 1.2rem; font-weight: bold; text-shadow: 0 0 10px var(--primary); }
-.bar-container { width: 60px; height: 4px; background: var(--dim); margin-bottom: 5px; }
-.bar-fill { height: 100%; background: var(--primary); box-shadow: 0 0 10px var(--primary); }
-.critical-text { color: #ff0000; animation: blink 0.5s infinite; }
-.blink { animation: blink 1s infinite; }
+.hud-left,
+.hud-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hud-left {
+    left: 10px;
+    text-align: left;
+}
+
+.hud-right {
+    right: 10px;
+    text-align: right;
+}
+
+/* Hide side HUDs on small screens */
+@media (max-width: 480px) {
+
+    .hud-left,
+    .hud-right {
+        display: none;
+    }
+}
+
+.hud-item .value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--primary);
+}
+
+.bar-container {
+    width: 60px;
+    height: 4px;
+    background: var(--dim);
+    margin-bottom: 5px;
+}
+
+.bar-fill {
+    height: 100%;
+    background: var(--primary);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+.critical-text {
+    color: #ff0000;
+    animation: blink 0.5s infinite;
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
 
 /* --- CENTER CONTENT (Cards) --- */
 .center-content {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    display: flex; justify-content: center; align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .warning-card {
@@ -125,30 +205,53 @@ body {
     backdrop-filter: blur(5px);
 }
 
-.action-btn, .rage-submit {
+.action-btn,
+.rage-submit {
     background: rgba(255, 51, 51, 0.2);
     border: 1px solid var(--primary);
     color: var(--primary);
-    padding: 15px; width: 100%; margin-top: 20px;
-    font-family: 'Share Tech Mono'; font-size: 1.2rem; font-weight: bold;
-    cursor: pointer; text-transform: uppercase;
+    padding: 15px;
+    width: 100%;
+    margin-top: 20px;
+    font-family: 'Share Tech Mono';
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
 .rage-input {
-    background: rgba(0,0,0,0.5); border: 1px solid var(--primary);
-    color: var(--primary); padding: 15px; width: 100%;
-    font-family: 'Share Tech Mono'; font-size: 1.5rem; text-align: center;
-    margin: 20px 0; outline: none;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 15px;
+    width: 100%;
+    font-family: 'Share Tech Mono';
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 20px 0;
+    outline: none;
 }
 
 /* --- LOADING SCREEN (Centered) --- */
 .loading-container {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 50;
-    display: flex; justify-content: center; align-items: center; /* PERFECT CENTERING */
-    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* PERFECT CENTERING */
+    background: rgba(0, 0, 0, 0.8);
 }
-.loading-text { font-size: 4rem; text-shadow: 0 0 20px var(--primary); }
+
+.loading-text {
+    font-size: 4rem;
+    text-shadow: 0 0 20px var(--primary);
+}
 
 /* --- ALARM STATE (Red Beam) --- */
 .alarm-state {
@@ -156,28 +259,67 @@ body {
 }
 
 @keyframes redBeam {
-    0% { box-shadow: inset 0 0 50px #300; background-color: #050000; }
-    100% { box-shadow: inset 0 0 150px #ff0000; background-color: #2a0000; }
+    0% {
+        box-shadow: inset 0 0 50px #300;
+        background-color: #050000;
+    }
+
+    100% {
+        box-shadow: inset 0 0 150px #ff0000;
+        background-color: #2a0000;
+    }
 }
 
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
 
 /* --- GIANT TIMER --- */
 .countdown-display {
-    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    font-size: 25vw; /* Scales massively */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25vw;
+    /* Scales massively */
     color: rgba(255, 0, 0, 0.4);
-    font-weight: 900; pointer-events: none;
+    font-weight: 900;
+    pointer-events: none;
     text-shadow: 0 0 20px red;
 }
 
 /* --- TAP BUTTONS --- */
 .alarm-node {
-    position: absolute; width: 80px; height: 80px;
-    border: 3px solid #fff; background: radial-gradient(circle, #ff3333, #990000);
-    color: white; display: flex; justify-content: center; align-items: center;
-    border-radius: 50%; font-weight: bold; font-size: 1.2rem;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: 3px solid #fff;
+    background: radial-gradient(circle, #ff3333, #990000);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.2rem;
     box-shadow: 0 0 25px red;
     animation: popIn 0.05s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-@keyframes popIn { from { transform: scale(0); } to { transform: scale(1); } }
+
+@keyframes popIn {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}

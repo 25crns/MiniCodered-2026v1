@@ -34,7 +34,7 @@
 
 .centre-rune {
   width: 40%;
-  aspect-ratio:  1;
+  aspect-ratio: 1;
   border-radius: 50%;
   border: 2px solid rgba(41, 41, 41);
   background: radial-gradient(var(--accent) calc(var(--solve-progress)*60%), rgba(72, 171, 224, 0.012) calc(var(--solve-progress)*100%));
@@ -47,6 +47,21 @@
   box-shadow: 0px 0px var(--blur) var(--range) var(--accent);
 }
 
+@media (max-width: 600px) {
+  .mainCircle {
+    width: 85vw;
+    height: 85vw;
+  }
+
+  .innerCircle {
+    width: 12vw;
+  }
+
+  .innerCircle[style*="translateY(-20vw)"] {
+    transform: rotate(var(--rotation)) translateY(-35vw) !important;
+  }
+}
+
 .solved {
   animation: smooth-blink 0.5s alternate;
   animation-iteration-count: 5;
@@ -54,9 +69,10 @@
 
 @keyframes smooth-blink {
   0% {
-      opacity: 1;
+    opacity: 1;
   }
+
   100% {
-      opacity: 0;
+    opacity: 0;
   }
 }

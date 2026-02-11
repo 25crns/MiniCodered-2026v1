@@ -1,7 +1,7 @@
 .title {
   position: absolute;
   bottom: 2rem;
-  font-size: 5rem;
+  font-size: clamp(2.5rem, 10vw, 5rem);
   width: 100vw;
   text-align: center;
   color: rgb(217, 43, 226);

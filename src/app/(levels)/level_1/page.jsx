@@ -44,7 +44,8 @@ export default function Page() {
             key={ind}
             className={`${(rune) ? styles.lit : styles.innerCircle} ${(litRunes == runeCount) ? styles.solved : ""}`}
             style={{
-              transform: `rotate(${ind * (360 / runeCount)}deg) translateY(-20vw)`,
+              "--rotation": `${ind * (360 / runeCount)}deg`,
+              transform: `rotate(var(--rotation)) translateY(-20vw)`,
             }}
             onClick={e => { e.stopPropagation(); handleClick(ind) }}
           >

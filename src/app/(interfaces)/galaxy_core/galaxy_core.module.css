@@ -11,6 +11,10 @@
 
 .container img {
     animation: pulse 2.5s ease-in-out infinite;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100vw;
+    max-height: 100vh;
 }
 
 @keyframes pulse {

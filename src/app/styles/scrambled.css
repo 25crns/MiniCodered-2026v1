@@ -11,8 +11,9 @@
 h1.backstory-title {
   display: flex;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 5vw, 1.5rem);
   width: 100%;
+  text-align: center;
 }
 
 .backstory-text-scrambled-scrollbar-wrapper {
@@ -31,7 +32,7 @@ h1.backstory-title {
   flex-wrap: wrap;
   row-gap: 1em;
   padding: 0.625rem;
-  width: 65vw;
+  width: clamp(300px, 92vw, 65vw);
   height: 75vh;
   overflow-x: hidden;
   overflow-y: auto;
@@ -85,7 +86,7 @@ h1.backstory-title {
   display: flex;
   position: relative;
   z-index: 10;
-  width: 65vw;
+  width: clamp(300px, 92vw, 65vw);
   margin-block: 0.5rem;
   padding: 0.125rem;
   justify-content: space-between;

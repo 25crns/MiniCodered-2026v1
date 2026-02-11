@@ -30,7 +30,7 @@ export default function Page() {
 
   const timerIntervalRef = useRef(null);
   const loadIntervalRef = useRef(null);
-  const totalAlarmsNeeded = 9;
+  const totalAlarmsNeeded = 15;
 
   const startLandingSequence = () => {
     const planet = document.querySelector(`.${styles.planet}`);

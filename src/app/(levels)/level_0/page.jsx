@@ -80,7 +80,7 @@ export default function Page() {
 
     startTimer(timeLimit);
     if (navigator.vibrate) navigator.vibrate([500, 200, 500]);
-    spawnAlarmNode();
+    spawnAllAlarmNodes();
   };
 
   const startTimer = (seconds) => {
@@ -100,33 +100,29 @@ export default function Page() {
     }, 100);
   };
 
-  const spawnAlarmNode = () => {
-    if (alarmCount >= totalAlarmsNeeded) {
-      stabilizeShip();
-      return;
-    }
-
+  const spawnAllAlarmNodes = () => {
     const maxX = window.innerWidth - 100;
     const maxY = window.innerHeight - 100;
 
-    const howMany = Math.random() < 0.5 ? 1 : 2;
-    const newNodes = [];
-    for (let i = 0; i < howMany; i++) {
+    const nodes = [];
+    for (let i = 0; i < totalAlarmsNeeded; i++) {
       const randomX = Math.max(20, Math.floor(Math.random() * maxX));
       const randomY = Math.max(20, Math.floor(Math.random() * maxY));
-      newNodes.push({ id: Date.now() + i, x: randomX, y: randomY });
+      nodes.push({ id: i, x: randomX, y: randomY });
     }
-    setAlarmNodes(prev => [...prev, ...newNodes]);
+    setAlarmNodes(nodes);
   };
 
   const handleAlarmNodeClick = (nodeId) => {
-    setAlarmNodes(prev => prev.filter(node => node.id !== nodeId));
+    setAlarmNodes(prev => {
+      const remaining = prev.filter(node => node.id !== nodeId);
+      if (remaining.length === 0) {
+        stabilizeShip();
+      }
+      return remaining;
+    });
     setAlarmCount(prev => prev + 1);
     if (navigator.vibrate) navigator.vibrate(50);
-
-    setTimeout(() => {
-      spawnAlarmNode();
-    }, 0);
   };
 
   const stabilizeShip = () => {

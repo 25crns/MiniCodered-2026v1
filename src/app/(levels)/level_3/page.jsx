@@ -181,7 +181,7 @@ export default function Page() {
                 className={styles["popup-button"]}
                 onClick={() => {
                   if (synced) {
-                    redirect('/level3/backstory_1', RedirectType.replace);
+                    redirect('/end_screen/backstory_1', RedirectType.replace);
                   }
                   else {
                     popup.onClick()

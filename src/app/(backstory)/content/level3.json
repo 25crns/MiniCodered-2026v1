@@ -6,7 +6,7 @@
         "Navigation restored.",
         "",
         "A subterranean energy source has been detected beneath the facility.",
-        "Power output exceeds known reactors.",
+        "Power output exceeds all known reactors.",
         "",
         "Energy patterns exhibit irregular structure.",
         "Readings show organized behavior beyond natural models.",
@@ -35,7 +35,7 @@
       "backgroundImageName": "landing-page-background.jpg",
       "accentColor": "dodgerblue",
       "prevUrl": "/level3/backstory_2",
-      "nextUrl": "/end_screen/backstory_1"
+      "nextUrl": "/level_3"
     }
   }
 }

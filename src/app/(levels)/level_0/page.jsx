@@ -27,20 +27,20 @@ export default function Page() {
   const [countdownDisplay, setCountdownDisplay] = useState('0.0');
   const [alarmNodes, setAlarmNodes] = useState([]);
   const [userInput, setUserInput] = useState('');
-  
+
   const timerIntervalRef = useRef(null);
   const loadIntervalRef = useRef(null);
-  const totalAlarmsNeeded = 10;
+  const totalAlarmsNeeded = 4;
 
   const startLandingSequence = () => {
     const planet = document.querySelector(`.${styles.planet}`);
     const hud = document.querySelector(`.${styles['hud-layer']}`);
     const introCard = document.getElementById('intro-card');
-    
+
     planet.classList.add(styles['planet-zoom']);
     introCard.style.opacity = '0';
     hud.style.opacity = '0';
-    
+
     setTimeout(() => {
       setGameState('loading');
       startLoading();
@@ -51,15 +51,15 @@ export default function Page() {
     /*  */
 
     let displayVal = 0;
-    
+
     loadIntervalRef.current = setInterval(() => {
       let increment = Math.random() * 2.5;
       displayVal += increment;
-      
+
       if (displayVal >= parseFloat(rageValue)) {
         setCurrentDisplayValue(parseFloat(rageValue));
         clearInterval(loadIntervalRef.current);
-        
+
         setTimeout(() => {
           triggerEmergency();
         }, 3000);
@@ -70,14 +70,14 @@ export default function Page() {
   };
 
 
-  
+
   const triggerEmergency = () => {
     setGameState('alarm');
     document.body.classList.add(styles['alarm-state']);
-    
+
     let calcValue = parseFloat(rageValue) / 10;
     let timeLimit = (calcValue >= 0 && calcValue <= 5) ? 6 : 9;
-    
+
     startTimer(timeLimit);
     if (navigator.vibrate) navigator.vibrate([500, 200, 500]);
     spawnAlarmNode();
@@ -90,7 +90,7 @@ export default function Page() {
     timerIntervalRef.current = setInterval(() => {
       remainingTime -= 0.1;
       setCountdownDisplay(remainingTime.toFixed(1));
-      
+
       if (remainingTime <= 0) {
         clearInterval(timerIntervalRef.current);
         setCountdownDisplay('0.0');
@@ -108,10 +108,10 @@ export default function Page() {
 
     const maxX = window.innerWidth - 100;
     const maxY = window.innerHeight - 100;
-    
+
     const randomX = Math.max(20, Math.floor(Math.random() * maxX));
     const randomY = Math.max(20, Math.floor(Math.random() * maxY));
-    
+
     const nodeId = alarmCount;
     setAlarmNodes(prev => [...prev, { id: nodeId, x: randomX, y: randomY }]);
   };
@@ -120,7 +120,7 @@ export default function Page() {
     setAlarmNodes(prev => prev.filter(node => node.id !== nodeId));
     setAlarmCount(prev => prev + 1);
     if (navigator.vibrate) navigator.vibrate(50);
-    
+
     setTimeout(() => {
       spawnAlarmNode();
     }, 0);

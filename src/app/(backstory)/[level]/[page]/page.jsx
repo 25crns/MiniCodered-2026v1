@@ -51,18 +51,18 @@ export default async function Backstory({ params, }) {
 	}
 
 	function getAnimatedWords(content) {
-		return content.split(/(?<=\s)/gm).map((word, ind) => {
+		return content.split(/(\s+)/).filter(Boolean).map((word, ind) => {
 			let delay = charCount;
 			charCount += word.length;
 			let scrambledStrs = getScrambledText(word.length);
 			return (
 				<div
+					key={ind}
 					className="word-container"
 					style={
 						{
 							"--n": word.length,
 							"--delay": delay,
-							"--prev-n": ind != 0 ? content[ind - 1].length : 0,
 						}
 					}>
 					<span className="word">{word}</span>

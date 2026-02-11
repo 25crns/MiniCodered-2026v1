@@ -30,6 +30,7 @@ export default function Page() {
 
   const timerIntervalRef = useRef(null);
   const loadIntervalRef = useRef(null);
+  const alarmCountRef = useRef(0);
   const totalAlarmsNeeded = 8;
 
   const startLandingSequence = () => {
@@ -72,6 +73,7 @@ export default function Page() {
 
 
   const triggerEmergency = () => {
+    if (gameState === 'alarm') return;
     setGameState('alarm');
     document.body.classList.add(styles['alarm-state']);
 
@@ -80,6 +82,8 @@ export default function Page() {
 
     startTimer(timeLimit);
     if (navigator.vibrate) navigator.vibrate([500, 200, 500]);
+    alarmCountRef.current = 0;
+    setAlarmCount(0);
     spawnNextAlarmNode(0);
   };
 
@@ -109,19 +113,33 @@ export default function Page() {
     const maxX = window.innerWidth - 120;
     const maxY = window.innerHeight - 120;
 
-    const randomX = Math.max(20, Math.floor(Math.random() * maxX));
-    const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+    const randomX = Math.max(40, Math.floor(Math.random() * maxX));
+    const randomY = Math.max(100, Math.floor(Math.random() * maxY));
 
-    setAlarmNodes([{ id: Date.now(), x: randomX, y: randomY, index: count }]);
+    setAlarmNodes([{ id: `node-${count}-${Date.now()}`, x: randomX, y: randomY, index: count }]);
   };
 
-  const handleAlarmNodeClick = (nodeId) => {
-    const clickedNode = alarmNodes.find(n => n.id === nodeId);
-    const nextCount = (clickedNode ? clickedNode.index : alarmCount) + 1;
+  const handleAlarmNodeClick = (e, nodeId) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
 
-    setAlarmCount(nextCount);
-    if (navigator.vibrate) navigator.vibrate(50);
-    spawnNextAlarmNode(nextCount);
+    setAlarmNodes(prev => {
+      const activeNode = prev.find(n => n.id === nodeId);
+      if (!activeNode) return prev;
+
+      const nextCount = alarmCountRef.current + 1;
+      alarmCountRef.current = nextCount;
+      setAlarmCount(nextCount);
+
+      if (navigator.vibrate) navigator.vibrate(50);
+
+      // Schedule next spawn
+      setTimeout(() => spawnNextAlarmNode(nextCount), 0);
+
+      return [];
+    });
   };
 
   const stabilizeShip = () => {
@@ -246,7 +264,7 @@ export default function Page() {
                 key={node.id}
                 className={styles['alarm-node']}
                 style={{ left: `${node.x}px`, top: `${node.y}px` }}
-                onPointerDown={() => handleAlarmNodeClick(node.id)}
+                onPointerDown={(e) => handleAlarmNodeClick(e, node.id)}
               >
                 TAP!
               </div>

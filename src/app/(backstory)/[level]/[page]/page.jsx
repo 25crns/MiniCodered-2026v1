@@ -36,25 +36,10 @@ export default async function Backstory({ params, }) {
 
 	let charCount = 0;
 
-	function getScrambledText(len) {
-		let scrambledStrs = ["", "", "", ""];
-		let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:\'",.<>?/`~';
-		let charactersLength = characters.length;
-		for (let i = 0; i < len; i++) {
-			scrambledStrs[0] += characters.charAt(Math.floor(Math.random() * charactersLength));
-			scrambledStrs[1] += characters.charAt(Math.floor(Math.random() * charactersLength));
-			scrambledStrs[2] += characters.charAt(Math.floor(Math.random() * charactersLength));
-			scrambledStrs[3] += characters.charAt(Math.floor(Math.random() * charactersLength));
-		}
-
-		return scrambledStrs;
-	}
-
 	function getAnimatedWords(content) {
 		return content.split(/(\s+)/).filter(Boolean).map((word, ind) => {
 			let delay = charCount;
 			charCount += word.length;
-			let scrambledStrs = getScrambledText(word.length);
 			return (
 				<div
 					key={ind}
@@ -66,12 +51,6 @@ export default async function Backstory({ params, }) {
 						}
 					}>
 					<span className="word">{word}</span>
-					<span
-						className="scrambled"
-						data-scrm-1={scrambledStrs[0]}
-						data-scrm-2={scrambledStrs[1]}
-						data-scrm-3={scrambledStrs[2]}
-						data-scrm-4={scrambledStrs[3]}></span>
 				</div>
 			);
 		})
@@ -91,8 +70,8 @@ export default async function Backstory({ params, }) {
 				<div className="backstory-text-scrambled" style={{ "color": backstoryData.pages[page].accentColor }}>
 					<h1 className="backstory-title">{getAnimatedWords(title)}</h1>
 					{
-						backstoryData.pages[page].paragraphs.map((content) => {
-							return <div className="backstory-paragraph">{getAnimatedWords(content)}</div>
+						backstoryData.pages[page].paragraphs.map((content, idx) => {
+							return <div key={idx} className="backstory-paragraph">{getAnimatedWords(content)}</div>
 						})
 					}
 				</div>

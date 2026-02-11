@@ -65,54 +65,10 @@ h1.backstory-title {
     animation-delay: calc(var(--delay)*var(--step-duration) + var(--n)*var(--step-duration));
   }
 
-  .scrambled {
-    /* scrambled word text */
-    grid-area: 1 / 1 / 2 / 2;
-    text-wrap: nowrap;
-    display: inline-block;
-    width: fit-content;
-    overflow: hidden;
-    white-space: pre;
-    color: rgba(128, 128, 128, 0.699);
-    animation:
-      reveal calc(var(--n)*var(--step-duration)) steps(var(--n)) reverse forwards;
-    animation-delay: calc(var(--delay)*var(--step-duration) + var(--n)*var(--step-duration));
-
-    &::after {
-      content: attr(data-scrm-1);
-      animation: animate-scramble calc(var(--n)*var(--step-duration)) steps(var(--n)) var(--n);
-    }
-  }
-
   .backstory-paragraph {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-  }
-
-}
-
-@keyframes removeScramble {
-  to {
-    content: ""
-  }
-}
-
-@keyframes animate-scramble {
-  0% {
-    content: attr(data-scrm-1);
-  }
-
-  25% {
-    content: attr(data-scrm-2);
-  }
-
-  50% {
-    content: attr(data-scrm-3);
-  }
-
-  75% {
-    content: attr(data-scrm-4);
   }
 
 }

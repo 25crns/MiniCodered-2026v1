@@ -17,7 +17,7 @@ const maxFreq = 1.5;
 
 export default function Page() {
   const containerStyle = {
-    ["--bg-image"]: `url(${GalaxyCore})`,
+    ["--bg-image"]: `url(${GalaxyCore.src})`,
   };
 
   const targetRef = useRef(null);

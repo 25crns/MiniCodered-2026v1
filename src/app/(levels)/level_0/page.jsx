@@ -135,7 +135,7 @@ export default function Page() {
 
   const checkRageValue = () => {
     if (parseFloat(userInput).toFixed(2) === rageValue) {
-      redirect('/level_1', RedirectType.replace)
+      redirect('/level2/backstory_1', RedirectType.replace)
     } else {
       alert(`ACCESS DENIED.\nRequired: ${rageValue}%`);
       window.location.reload();

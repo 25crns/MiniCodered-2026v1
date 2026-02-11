@@ -19,7 +19,7 @@ export default function Page() {
 
   if (litRunes == runeCount) {
     setTimeout(() => {
-      redirect('/level2/backstory_1', RedirectType.replace)
+      redirect('/level3/backstory_1', RedirectType.replace)
     }, 2500)
   }
 

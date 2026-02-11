@@ -27,6 +27,10 @@
     {
       "level": "end_screen",
       "page": "backstory_1"
+    },
+    {
+      "level": "end_screen",
+      "page": "backstory_2"
     }
   ]
 }

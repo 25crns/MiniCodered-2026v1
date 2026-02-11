@@ -20,6 +20,14 @@
       "backgroundImageName": "landing-page-background.jpg",
       "accentColor": "cyan",
       "prevUrl": null,
+      "nextUrl": "/end_screen/backstory_2"
+    },
+    "backstory_2": {
+      "title": "Galaxy Core",
+      "paragraphs": [],
+      "backgroundImageName": "GalaxyCore.jpg",
+      "accentColor": "cyan",
+      "prevUrl": "/end_screen/backstory_1",
       "nextUrl": null
     }
   }

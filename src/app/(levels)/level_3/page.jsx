@@ -5,7 +5,6 @@
 import { useEffect, useRef, useState } from "react";
 import { redirect, RedirectType } from "next/navigation";
 import SineWave from "./SineWave";
-import GalaxyCore from "../../../../public/assets/GalaxyCore.jpg";
 import styles from '@/app/styles/lvl3.module.css'
 
 const maxAmp = 60;
@@ -16,9 +15,7 @@ const minFreq = 0.5;
 const maxFreq = 1.5;
 
 export default function Page() {
-  const containerStyle = {
-    ["--bg-image"]: `url(${GalaxyCore.src})`,
-  };
+  const containerStyle = {};
 
   const targetRef = useRef(null);
   const playerRef = useRef(null);

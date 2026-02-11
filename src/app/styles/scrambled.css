@@ -77,7 +77,7 @@ h1.backstory-title {
   }
 
   100% {
-    width: calc(var(--n) * 1ch + 1ch);
+    width: calc(var(--n) * 1ch + 1.5ch);
   }
 }
 
